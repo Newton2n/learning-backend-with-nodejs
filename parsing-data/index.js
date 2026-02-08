@@ -1,8 +1,9 @@
 const http = require("http");
-const fs = require("fs")
+const { parse } = require("path");
+const { json } = require("stream/consumers");
+
 const server = http.createServer((req, res) => {
-  console.log(req.url, req.headers);
-  console.log("Method", req.method);
+
   if (req.url === "/") {
     res.setHeader("content-type", "text/html");
     res.write("<html>");
@@ -22,9 +23,22 @@ const server = http.createServer((req, res) => {
     res.write("</form>");
     res.write("</html>");
     return res.end();
-  } else if (req.url.toLowerCase() === "/submit-result" && req.method === "POST") {
+  } else if (
+    req.url.toLowerCase() === "/submit-result" &&
+    req.method === "POST"
+  ) {
+    const body =[]
+    req.on("data",chunk=>{
+        
+        body.push(chunk)
+        console.log("body",body)
+
+    })
+    req.on("end",() =>{
+      const parseData =  Buffer.concat(body).toString()
+      console.log("final data ",parseData)
+    })
     res.setHeader("Location", "/");
-    fs.writeFileSync("text.txt","Newton bepari ")
     res.statusCode = 302; // status 302 for redirect url status code
     return res.end();
   }
@@ -37,5 +51,5 @@ const server = http.createServer((req, res) => {
 });
 const PORT = 3004;
 server.listen(PORT, () => {
-  console.log(PORT);
+//   console.log(PORT);
 });
