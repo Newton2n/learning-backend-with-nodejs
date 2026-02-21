@@ -1,12 +1,15 @@
 const http = require("http");
-const logical = require("./logical");
+// const logical = require("./logical");
 
-const server = http.createServer((req, res) => {
-  console.log(req.url, req.method);
+// const server = http.createServer((req, res) => {
+//   console.log(req.url, req.method);
 
-  logical();
-  return res.end()
-});
+//   logical();
+//   return res.end()
+// });
+const requestHandler = require("./user");
+
+const server = http.createServer(requestHandler);
 
 const PORT = 3000;
 server.listen(PORT, () => {
