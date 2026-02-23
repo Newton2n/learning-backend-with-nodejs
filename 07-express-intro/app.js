@@ -6,13 +6,18 @@ const requestHandler = require("./user");
 
 const app = express();
 
-app.use((req, res, next) => {
+app.use("/", (req, res, next) => {
   console.log("came in first middleware", req.url, req.method);
+  // res.send("came in first middleware</h1>")
   next();
 });
-app.use((req, res, next) => {
+app.get("/", (req, res, next) => {
+  console.log("came in middle middleware", req.url, req.method);
+  res.send("<h1>came in middle middleware </h1>");
+});
+app.post("/home", (req, res, next) => {
   console.log("came in second middleware", req.url, req.method);
-  res.send("<h1>Hello world </h1>");
+  res.send("<h1>came in second middleware</h1>");
 });
 
 const PORT = 3000;
