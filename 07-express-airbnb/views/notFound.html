@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page not found - Airbnb (No CORS)</title>
+    <style>
+        :root {
+            --air-red: #ff385c;
+            --dark-text: #222222;
+            --light-text: #717171;
+            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-stack);
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+        }
+
+        header {
+            padding: 20px 5%;
+            border-bottom: 1px solid #ebebeb;
+        }
+
+        .logo {
+            color: var(--air-red);
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .error-content {
+            display: flex;
+            max-width: 1000px;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .text-side h1 {
+            font-size: 80px;
+            margin-bottom: 20px;
+            color: var(--dark-text);
+        }
+
+        .text-side h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: var(--dark-text);
+            line-height: 1.2;
+        }
+
+        .text-side p {
+            color: var(--light-text);
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .btn-home {
+            display: inline-block;
+            padding: 14px 24px;
+            background-color: white;
+            color: var(--dark-text);
+            border: 1px solid var(--dark-text);
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .btn-home:hover {
+            background-color: #f7f7f7;
+        }
+
+        .image-side {
+            position: relative;
+        }
+
+        /* SVG Ghost Animation */
+        .ghost-svg {
+            width: 250px;
+            height: 250px;
+            fill: #ebebeb;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-30px); }
+        }
+
+        @media (max-width: 768px) {
+            .error-content {
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 30px;
+            }
+            .text-side h1 { font-size: 60px; }
+            .ghost-svg { width: 150px; height: 150px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">
+            <svg width="32" height="32" viewBox="0 0 32 32" style="fill: currentColor;"><path d="M16 1c2.008 0 3.463.963 4.751 3.269l.533 1.025c1.954 3.83 6.114 12.54 7.1 14.836l.145.353c.667 1.591.91 2.472.96 3.396l.01.415.001.228c0 4.062-2.877 6.478-6.357 6.478-2.224 0-4.556-1.258-6.709-3.386l-.257-.26-.172-.179h-.011l-.176.185c-2.044 2.1-4.393 3.405-6.701 3.405-3.48 0-6.358-2.416-6.358-6.479 0-1.142.233-2.156.76-3.417l.128-.293C4.31 16.806 8.161 8.735 10.186 4.927l.535-1.033C12.008 1.963 13.463 1 15.471 1zM16 11c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3z"/></svg>
+            <span>airbnb</span>
+        </a>
+    </header>
+
+    <div class="container">
+        <div class="error-content">
+            <div class="text-side">
+                <h1>Oops!</h1>
+                <h2>We can't seem to find the page you're looking for.</h2>
+                <p>Error code: 404</p>
+                
+                <div style="margin-bottom: 10px; font-weight: 500;">Here are some helpful links instead:</div>
+                <ul style="list-style: none; margin-bottom: 30px; line-height: 2.5;">
+                    <li><a href="#" style="color: var(--dark-text); text-decoration: underline;">Home</a></li>
+                    <li><a href="#" style="color: var(--dark-text); text-decoration: underline;">Search</a></li>
+                    <li><a href="#" style="color: var(--dark-text); text-decoration: underline;">Help Center</a></li>
+                </ul>
+
+                <a href="/" class="btn-home">Go to Home Page</a>
+            </div>
+
+            <div class="image-side">
+                <svg class="ghost-svg" viewBox="0 0 512 512">
+                    <path d="M502.6 70.63l-61.25-61.25C435.1 3.125 427.1 0 419.9 0s-15.12 3.125-21.38 9.375L343.4 64H176c-8.836 0-16 7.164-16 16v12.69l-114.7 114.7C39.12 213.6 36 221.7 36 228.9s3.125 15.25 9.375 21.38l61.25 61.25C112.9 317.9 120.9 321.1 128.1 321.1s15.12-3.125 21.38-9.375L204.6 256H336v192h-48c-8.836 0-16 7.164-16 16v48c0 8.836 7.164 16 16 16h128c8.836 0 16-7.164 16-16v-48c0-8.836-7.164-16-16-16h-48V64h48.11l54.51 54.51c6.125 6.125 14.12 9.375 21.38 9.375s15.25-3.125 21.38-9.375l61.25-61.25c6.25-6.125 9.375-14.12 9.375-21.38s-3.125-15.25-9.375-21.38z"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

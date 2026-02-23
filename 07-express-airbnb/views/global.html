@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airbnb Clone - Multi-Page Navigation</title>
+    <style>
+        :root {
+            --air-red: #ff385c;
+            --gray: #717171;
+            --border: #ebebeb;
+            --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: var(--font); }
+
+        header {
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            padding: 15px 40px;
+            border-bottom: 1px solid var(--border);
+            position: sticky; top: 0; background: white; z-index: 10;
+        }
+
+        .logo { 
+            color: var(--air-red); 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            font-weight: bold; 
+            font-size: 20px;
+            text-decoration: none;
+        }
+
+        /* --- Navigation Links --- */
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-size: 14px;
+            font-weight: 600;
+            padding: 10px 15px;
+            border-radius: 20px;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-link:hover {
+            background: #f7f7f7;
+        }
+
+        .nav-link svg {
+            width: 18px;
+            height: 18px;
+            fill: #222;
+        }
+
+        .search-bar {
+            border: 1px solid #ddd;
+            border-radius: 40px;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .search-icon {
+            background: var(--air-red);
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            margin-left: 10px;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .container {
+            padding: 20px 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 24px;
+        }
+
+        .card { cursor: pointer; }
+
+        .img-box {
+            width: 100%;
+            aspect-ratio: 1/1;
+            background: #f3f3f3;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .img-box img { width: 100%; height: 100%; object-fit: cover; }
+
+        .info { font-size: 15px; line-height: 1.4; }
+        .info b { font-weight: 600; }
+        .sub { color: var(--gray); }
+
+        svg { fill: currentColor; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">
+            <svg width="32" height="32" viewBox="0 0 32 32"><path d="M16 1c2.008 0 3.463.963 4.751 3.269l.533 1.025c1.954 3.83 6.114 12.54 7.1 14.836l.145.353c.667 1.591.91 2.472.96 3.396l.01.415.001.228c0 4.062-2.877 6.478-6.357 6.478-2.224 0-4.556-1.258-6.709-3.386l-.257-.26-.172-.179h-.011l-.176.185c-2.044 2.1-4.393 3.405-6.701 3.405-3.48 0-6.358-2.416-6.358-6.479 0-1.142.233-2.156.76-3.417l.128-.293C4.31 16.806 8.161 8.735 10.186 4.927l.535-1.033C12.008 1.963 13.463 1 15.471 1zM16 11c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3z"/></svg>
+            <span>airbnb</span>
+        </a>
+
+        <div class="search-bar">
+            <span>Anywhere</span>
+            <span style="border-left: 1px solid #ddd; border-right: 1px solid #ddd; margin: 0 10px; padding: 0 10px;">Any week</span>
+            <span style="color: var(--gray)">Add guests</span>
+            <div class="search-icon">
+                <svg width="12" height="12" viewBox="0 0 32 32" style="fill: white;"><path d="m13 24c6.075 0 11-4.925 11-11s-4.925-11-11-11-11 4.925-11 11 4.925 11 11 11zm8-3 9 9"/></svg>
+            </div>
+        </div>
+
+        <nav class="nav-menu">
+            <a href="/home/admin" class="nav-link">
+                <svg viewBox="0 0 24 24"><path d="M13 3v6h8V3h-8zM3 21h8v-6H3v6zM3 3v10h8V3H3zm10 18h8v-10h-8v10z"/></svg>
+                Admin
+            </a>
+            <a href="/home/user" class="nav-link">
+                <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                User
+            </a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <div class="img-box">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==" alt="Listing">
+            </div>
+            <div class="info">
+                <div style="display: flex; justify-content: space-between;">
+                    <b>Malibu, California</b>
+                    <span>★ 4.9</span>
+                </div>
+                <div class="sub">Beachfront paradise</div>
+                <div class="sub">Oct 20 - 25</div>
+                <div style="margin-top: 4px;"><b>$450</b> night</div>
+            </div>
+        </div>
+        </div>
+
+</body>
+</html>
