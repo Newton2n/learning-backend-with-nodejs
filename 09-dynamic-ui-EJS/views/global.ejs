@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airbnb | Property Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #222222;
+        }
+
+        .line-clamp-1 {
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+
+    <header
+        class="sticky top-0 z-50 bg-white border-b border-gray-100 px-4 md:px-8 py-3 flex items-center justify-between">
+        <a href="/" class="text-[#ff385c] font-bold text-xl flex items-center gap-1">
+            <svg width="28" height="28" viewBox="0 0 32 32" fill="currentColor">
+                <path
+                    d="M16 1c2.008 0 3.463.963 4.751 3.269l.533 1.025c1.954 3.83 6.114 12.54 7.1 14.836l.145.353c.667 1.591.91 2.472.96 3.396l.01.415.001.228c0 4.062-2.877 6.478-6.357 6.478-2.224 0-4.556-1.258-6.709-3.386l-.257-.26-.172-.179h-.011l-.176.185c-2.044 2.1-4.393 3.405-6.701 3.405-3.48 0-6.358-2.416-6.358-6.479 0-1.142.233-2.156.76-3.417l.128-.293C4.31 16.806 8.161 8.735 10.186 4.927l.535-1.033C12.008 1.963 13.463 1 15.471 1zM16 11c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3z" />
+            </svg>
+            <span>airbnb</span>
+        </a>
+
+        <div class="flex items-center gap-2 md:gap-4">
+            <a href="/add-home"
+                class="text-xs md:text-sm font-semibold py-2 px-3 rounded-full hover:bg-gray-100 transition">Add
+                Home</a>
+            <div
+                class="flex items-center border border-gray-300 rounded-full p-1 pl-3 gap-2 hover:shadow-md cursor-pointer transition">
+                <div
+                    class="w-7 h-7 bg-gray-600 rounded-full text-white flex items-center justify-center text-[10px] font-bold">
+                    JD</div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-[1400px] mx-auto px-4 md:px-8 py-8">
+
+        <div class="mb-6 flex justify-between items-end">
+            <div>
+                <h1 class="text-xl font-bold">Your Listings</h1>
+                <p class="text-xs text-gray-500">Manage your properties at a glance</p>
+            </div>
+            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">6 Active</p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+
+            <% addHomeDetails.forEach(data=>{ %>
+
+                <div class="group cursor-pointer">
+
+                    <div class=" border-2 border-red-500 rounded-2xl px-1 py-12">
+                        <h3 class="text-[11px] font-bold line-clamp-1">
+                          Name:  <%= data.title %>
+                        </h3>
+                        <h3 class="text-[11px] font-bold line-clamp-1">
+                          Home type:  <%= data.category %>
+                        </h3>
+                        <p class="text-[10px] font-bold line-clamp-1">
+                          address:<%= data.address %>
+                        </p>
+                        <p class="text-[11px] font-bold mt-1">
+                         Price :   <%= data.price %> $
+                        </p>
+                        
+                    </div>
+                </div>
+                <% }) %>
+                    <a href="/add-home"
+                        class="aspect-square w-full border-2 border-dashed border-gray-200 rounded-lg flex flex-col items-center justify-center hover:border-rose-300 hover:bg-rose-50 transition group">
+                        <span class="text-xl text-gray-300 group-hover:text-rose-500">+</span>
+                        <span class="text-[9px] font-bold text-gray-400 group-hover:text-rose-500 uppercase">Add
+                            Listing</span>
+                    </a>
+
+        </div>
+    </main>
+
+    <footer class="mt-20 py-6 border-t border-gray-100 text-center">
+        <p class="text-[10px] text-gray-400">© 2026 Airbnb Dashboard Clone</p>
+    </footer>
+
+</body>
+
+</html>
