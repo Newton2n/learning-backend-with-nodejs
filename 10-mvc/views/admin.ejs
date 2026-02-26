@@ -1,0 +1,125 @@
+<%- include('./partials/head') %>
+
+</head>
+
+<body class="bg-gray-50 text-[#222222] flex min-h-screen">
+
+   <!-- Header -->
+    <%- include('./partials/nav') %>
+
+    <main class="flex-1 p-4 md:p-8 overflow-y-auto">
+
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+            <h1 class="text-2xl md:text-3xl font-bold">Property Overview</h1>
+            <button
+                class="bg-[#ff385c] text-white px-5 py-2.5 rounded-lg font-semibold hover:bg-[#e31c5f] transition shadow-sm active:scale-95"
+                onclick="alert('Offline: Modal logic goes here')">
+                + Add New Listing
+            </button>
+        </div>
+
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+            <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                <p class="text-sm text-gray-500 font-medium">Total Revenue</p>
+                <h3 class="text-2xl font-bold mt-1">$12,450.00</h3>
+                <span class="text-green-600 text-xs font-semibold block mt-2">↑ 12% from last month</span>
+            </div>
+            <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                <p class="text-sm text-gray-500 font-medium">Active Bookings</p>
+                <h3 class="text-2xl font-bold mt-1">42</h3>
+                <span class="text-blue-600 text-xs font-semibold block mt-2">8 checking in today</span>
+            </div>
+            <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                <p class="text-sm text-gray-500 font-medium">Avg. Rating</p>
+                <div class="flex items-center gap-2 mt-1">
+                    <h3 class="text-2xl font-bold">4.85</h3>
+                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                    </svg>
+                </div>
+                <span class="text-gray-400 text-xs block mt-2">Based on 1,240 reviews</span>
+            </div>
+        </section>
+
+        <h2 class="text-xl font-bold mb-4">Recent Listings</h2>
+        <div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead class="bg-gray-50 text-gray-600 uppercase text-xs font-bold">
+                        <tr>
+                            <th class="px-6 py-4">Property</th>
+                            <th class="px-6 py-4">Location</th>
+                            <th class="px-6 py-4">Price/Night</th>
+                            <th class="px-6 py-4">Status</th>
+                            <th class="px-6 py-4">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100">
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 flex items-center gap-3 font-semibold">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkqG9oAAAEEAFlzXupfQAAAABJRU5ErkJggg=="
+                                    class="w-10 h-10 rounded-lg object-cover bg-gray-200">
+                                Beachfront Villa
+                            </td>
+                            <td class="px-6 py-4 text-gray-600 text-sm">Malibu, CA</td>
+                            <td class="px-6 py-4 font-medium">$520</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">Active</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex gap-3 text-gray-400">
+                                    <button class="hover:text-blue-500 transition">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
+                                        </svg>
+                                    </button>
+                                    <button class="hover:text-red-500 transition">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 flex items-center gap-3 font-semibold">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
+                                    class="w-10 h-10 rounded-lg object-cover bg-gray-200">
+                                Paris Loft
+                            </td>
+                            <td class="px-6 py-4 text-gray-600 text-sm">Paris, France</td>
+                            <td class="px-6 py-4 font-medium">$310</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">Active</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex gap-3 text-gray-400">
+                                    <button class="hover:text-blue-500 transition">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
+                                        </svg>
+                                    </button>
+                                    <button class="hover:text-red-500 transition">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>

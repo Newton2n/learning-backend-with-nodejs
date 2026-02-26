@@ -1,0 +1,88 @@
+<%- include('./partials/head') %>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #222222;
+        }
+
+        .line-clamp-1 {
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
+    </head>
+
+    <body class="bg-white">
+
+        <!-- Header  -->
+        <%- include('./partials/nav') %>
+
+
+            <main class="max-w-[1400px] mx-auto px-6 md:px-12 py-10">
+
+                <div class="mb-8 flex justify-between items-end">
+                    <div>
+                        <h1 class="text-3xl font-semibold tracking-tight">Your listings</h1>
+                        <p class="text-gray-500 mt-1">Review and manage your active properties.</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <span
+                            class="bg-green-100 text-green-700 text-[10px] font-bold px-2.5 py-1 rounded-md uppercase">
+                            <%= addHomeDetails.length %>
+                                Active
+                        </span>
+                    </div>
+                </div>
+
+                <div
+                    class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-4 gap-y-8">
+
+                    <% addHomeDetails.forEach((item)=>{ %>
+                        <div class="group cursor-pointer">
+                            <div class="aspect-square w-full overflow-hidden rounded-lg bg-gray-100 mb-2">
+                                <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=600"
+                                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    alt="Urban Loft">
+                            </div>
+                            <div class="flex flex-col gap-0">
+                                <div class="flex justify-between items-start">
+                                    <h3 class="font-bold text-[12px] line-clamp-1">
+                                        <%= item.title %>
+                                    </h3>
+                                    <span class="text-[10px]">
+                                        <%= item.category %>
+                                    </span>
+                                </div>
+                                <p class="text-gray-500 text-[11px] line-clamp-1">
+                                    <%= item.address %>
+                                </p>
+                                <p class="mt-1 font-bold text-[12px]">
+                                    <%= item.price %> $ <span class="font-normal text-gray-500">
+                                            day</span>
+                                </p>
+                            </div>
+                        </div>
+                        <% })%>
+
+
+                            <a href="/add-home"
+                                class="aspect-square w-full border border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center hover:border-rose-500 hover:bg-rose-50 transition-all group">
+                                <span class="text-xl text-gray-400 group-hover:text-rose-500 mb-1">+</span>
+                                <span
+                                    class="text-[10px] font-bold text-gray-400 group-hover:text-rose-500 uppercase tracking-tighter">Add
+                                    Listing</span>
+                            </a>
+
+                </div>
+            </main>
+
+            <footer class="mt-20 py-10 border-t border-gray-100 bg-gray-50 text-center">
+                <p class="text-sm text-gray-500">© 2026 Airbnb Dashboard Clone · Privacy · Terms · Sitemap</p>
+            </footer>
+
+    </body>
+
+    </html>
