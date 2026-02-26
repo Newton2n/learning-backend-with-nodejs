@@ -5,12 +5,10 @@ const path = require("path");
 const express = require("express");
 
 //local modules
-const home = require("./routes/home");
-const admin = require("./routes/adminRoute");
-const user = require("./routes/userRoute");
-const { addHome } = require("./routes/add-home");
 const rootDir = require("./util/path-utils");
 const { notFound } = require("./controllers/notFound");
+const hostRouter = require("./routes/host-router");
+const store = require("./routes/store-router");
 
 const app = express();
 
@@ -20,12 +18,9 @@ app.set("view engine", "ejs");
 app.set("views", "views");
 app.use(express.static(path.join(rootDir, "public")));
 
-app.use(home); //home page
-app.use("/admin", admin); //admin page
-app.use(user); //user page
-app.use(addHome); //add home page
+app.use(hostRouter); //home page
+app.use(store); //user page
 app.use(notFound); //not found page
-
 
 const PORT = 3000;
 app.listen(PORT, () => {
