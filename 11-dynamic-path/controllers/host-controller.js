@@ -62,5 +62,13 @@ exports.postEditHome = (req, res, next) => {
   const home = new Home(title, category, address, price);
   home.id = updateHomeId;
   home.save();
-  res.redirect("/")
+  res.redirect("/");
+};
+exports.postDeleteHome = (req, res, next) => {
+  const { homeId } = req.body;
+  console.log(homeId);
+  Home.deleteHome(homeId, (leftHome) => {
+    console.log(leftHome);
+     res.redirect("/host-home-list")
+  });
 };

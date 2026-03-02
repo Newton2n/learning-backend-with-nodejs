@@ -76,14 +76,14 @@
                                     <p class="font-bold text-[12px]">
                                         <%= item.price %> $ <span class="font-normal text-gray-400">day</span>
                                     </p>
-                                    <!-- <form action="/edit-home" method="POST">
+                                    <form action="/delete-home" method="POST">
                                         <input type="hidden" name="homeId" value="<%= item.id %>">
                                         <button type="submit"
                                             class="bg-[#ff385c] text-white text-[10px] font-bold px-3 py-1 rounded-md hover:bg-[#e31c5f] transition-colors active:scale-95 cursor-pointer">
-                                            Edit Home
+                                            delete
                                         </button>
                                         
-                                        </form> -->
+                                        </form>
                                         <a href="edit-home/<%=item.id%>?editing=true">
                                             <button
                                                 class="bg-red-500 text-white text-[10px] font-bold px-3 py-1 rounded-md hover:bg-red-700 transition-colors active:scale-95 cursor-pointer">

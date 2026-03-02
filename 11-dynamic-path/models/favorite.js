@@ -20,6 +20,17 @@ class Favorites {
       callback(!err ? JSON.parse(data) : []);
     });
   }
+  static deleteFromFavList(homeId,callback){
+   this.getFav(favoriteList =>{
+    favoriteList = favoriteList.filter((id)=>{
+       return homeId !== id
+    })
+    fs.writeFile(filePath, JSON.stringify(favoriteList), callback);
+    console.log("fav list if left" ,favoriteList)
+    
+   }
+  )
+  }
 }
 
 module.exports = Favorites;

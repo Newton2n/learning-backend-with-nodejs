@@ -16,12 +16,12 @@ class Home {
   }
 
   save() {
-    Home.fetch(addHomeDetails => {
+    Home.fetch((addHomeDetails) => {
       if (this.id) {
-      addHomeDetails = addHomeDetails.map((home) => {
-         return home.id === this.id ? this : home;
+        addHomeDetails = addHomeDetails.map((home) => {
+          return home.id === this.id ? this : home;
         });
-        console.log("New home edit in save",addHomeDetails)
+        console.log("New home edit in save", addHomeDetails);
       } else {
         this.id = Math.random().toString();
         addHomeDetails.push(this);
@@ -54,6 +54,19 @@ class Home {
         return result;
       });
       callback(homeFound);
+    });
+  }
+  static deleteHome(homeId, callback) {
+    this.fetch((homes) => {
+      const homeLeft = homes.filter((home) => {
+        const result = home.id !== homeId;
+        return result;
+      });
+      
+      fs.writeFile(filePath, JSON.stringify(homeLeft), (error) => {
+        console.log("Error on file write", error);
+        Favorite.deleteFromFavList(homeId,callback)
+      });;
     });
   }
 }
