@@ -16,9 +16,16 @@ class Home {
   }
 
   save() {
-    this.id = Math.random().toString();
-    Home.fetch((addHomeDetails) => {
-      addHomeDetails.push(this);
+    Home.fetch(addHomeDetails => {
+      if (this.id) {
+      addHomeDetails = addHomeDetails.map((home) => {
+         return home.id === this.id ? this : home;
+        });
+        console.log("New home edit in save",addHomeDetails)
+      } else {
+        this.id = Math.random().toString();
+        addHomeDetails.push(this);
+      }
       fs.writeFile(filePath, JSON.stringify(addHomeDetails), (error) => {
         console.log("Error on file write", error);
       });
@@ -27,6 +34,7 @@ class Home {
 
   static fetch(callback) {
     fs.readFile(filePath, (err, data) => {
+      // console.log(data)
       callback(!err ? JSON.parse(data) : []);
     });
   }
@@ -39,7 +47,15 @@ class Home {
       callback(homeFound);
     });
   }
- 
+  static editHome(homeId, callback) {
+    this.fetch((homes) => {
+      const homeFound = homes.find((home) => {
+        const result = home.id === homeId;
+        return result;
+      });
+      callback(homeFound);
+    });
+  }
 }
 
 module.exports = Home;

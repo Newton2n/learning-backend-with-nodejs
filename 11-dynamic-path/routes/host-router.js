@@ -8,6 +8,7 @@ const {
   postHome,
   getHostHome,
   getEditHome,
+  postEditHome
 } = require("../controllers/host-controller");
 
 const hostRouter = express.Router();
@@ -20,5 +21,6 @@ hostRouter.get("/host-home-list", getHostHome);
 hostRouter.post("/add-home", postHome);
 hostRouter.get("/add-home", getAddHome);
 hostRouter.get("/edit-home/:homeId", getEditHome);
+hostRouter.post("/edit-home/:homeId", postEditHome);
 
 module.exports = hostRouter;

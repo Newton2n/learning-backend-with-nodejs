@@ -2,10 +2,10 @@ const Home = require("../models/home");
 const Favorites = require("../models/favorite");
 
 exports.getHome = (req, res, next) => {
-  Home.fetch((addHomeDetails) => {
+  Home.fetch(HomeDetails => {
     // console.log("Add home details :", addHomeDetails);
     res.render("./store/index", {
-      addHomeDetails: addHomeDetails,
+      addHomeDetails:HomeDetails,
       pageTitle: "airbnb global home page",
     });
   });
