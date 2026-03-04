@@ -61,7 +61,7 @@ exports.getPostAddFavoritesList = (req, res, next) => {
 exports.getHomeDetails = (req, res, next) => {
   const homeId = req.params.homeId;
   console.log("Home id in get home details", homeId);
-  Home.findById(homeId).then(home => {
+  Home.findById(homeId).then(([home]) => {
     console.log("Home by id in get home details", home);
     if (!home) {
       console.log("Home not found");

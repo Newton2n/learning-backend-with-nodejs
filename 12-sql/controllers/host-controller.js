@@ -13,9 +13,10 @@ const Home = require("../models/home");
 
 exports.postHome = (req, res, next) => {
   //   addHomeDetails.push(req.body);
-  const { title, category, address, price ,description,imgUrl} = req.body;
-
-  const home = new Home(title, category, address, price,description,imgUrl);
+  const { title, category, address, price ,description,imgUrl,rating} = req.body;
+console.log("title:",title,"category:", category,"address:", address,"price:", price , "description:",description,"imgUrl:" ,imgUrl,"Rating",rating)
+  console.log(req.body)
+  const home = new Home(title, category, address, price,description,imgUrl,rating);
   home.save();
   res.render("./host/add-home-success", {
     pageTitle: "airbnb | Home successful",
@@ -24,12 +25,15 @@ exports.postHome = (req, res, next) => {
 };
 
 exports.getHostHome = (req, res, next) => {
-  Home.fetch().then((addHomeDetails) => {
+  Home.fetch().then(([homeDetails]) => {
+    console.log("host home list :",homeDetails)
     res.render("./host/host-home-list", {
-      addHomeDetails: addHomeDetails,
+      addHomeDetails: homeDetails,
       pageTitle: "Host home page",
     });
-  });
+  }).catch((err)=>{
+    console.log(err)
+  })
 };
 exports.getAddHome = (req, res, next) => {
   // res.sendFile(path.join(rootDir, "views", "add-home.html"));
@@ -67,8 +71,7 @@ exports.postEditHome = (req, res, next) => {
 exports.postDeleteHome = (req, res, next) => {
   const { homeId } = req.body;
   console.log(homeId);
-  Home.deleteHome(homeId, (leftHome) => {
-    console.log(leftHome);
-     res.redirect("/host-home-list")
-  });
+  Home.deleteHome(homeId).then(()=>{
+    return res.redirect("/host-home-list")
+  })
 };
