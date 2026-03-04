@@ -1,0 +1,104 @@
+<%- include('../partials/head') %>
+</head>
+<body class="bg-white text-[#222222]">
+
+   <!-- Header -->
+  <%- include('../partials/nav') %>
+    <div class="max-w-5xl mx-auto px-6 py-8 md:py-12 flex flex-col md:flex-row gap-12 lg:gap-24">
+        
+        <aside class="md:w-1/3 lg:w-1/4">
+            <div class="border border-gray-200 rounded-3xl p-6 shadow-xl flex flex-col items-center text-center sticky top-24">
+                <div class="relative w-28 h-28 mb-4">
+                    <img class="w-full h-full rounded-full object-cover bg-gray-200" 
+                         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==" 
+                         alt="Alex">
+                    <div class="absolute bottom-1 right-1 bg-[#ff385c] p-1.5 rounded-full border-2 border-white shadow-sm">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4 text-white" fill="currentColor">
+                            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+                        </svg>
+                    </div>
+                </div>
+                <h1 class="text-3xl font-bold">Alex</h1>
+                <p class="flex items-center gap-1.5 text-sm font-semibold mt-1">
+                    <svg class="w-4 h-4 text-[#ff385c]" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                    </svg>
+                    Superhost
+                </p>
+
+                <div class="w-full h-px bg-gray-100 my-6"></div>
+
+                <div class="w-full space-y-4 text-left">
+                    <div class="flex items-center gap-3 text-[15px]">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" /></svg>
+                        <span class="font-medium">142 Reviews</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-[15px]">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span class="font-medium">Identity verified</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-[15px]">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span class="font-medium">Joined in 2018</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="flex-1">
+            <section class="mb-10">
+                <h2 class="text-2xl font-bold mb-4">About Alex</h2>
+                <p class="text-gray-600 leading-relaxed text-lg">
+                    Hi, I'm Alex! I'm a landscape architect living in California. I love traveling to remote places
+                    and designing sustainable living spaces. When I'm not hosting, you'll find me hiking or
+                    surfing near Malibu. I look forward to hosting you!
+                </p>
+            </section>
+
+            <section class="border border-gray-200 rounded-2xl p-6 mb-12">
+                <h3 class="text-xl font-bold mb-4 text-black">Alex confirmed</h3>
+                <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <li class="flex items-center gap-3"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" /></svg> Identity</li>
+                    <li class="flex items-center gap-3"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" /></svg> Email address</li>
+                    <li class="flex items-center gap-3"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" /></svg> Phone number</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2 class="text-2xl font-bold mb-6">Alex's listings</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="group cursor-pointer">
+                        <div class="aspect-[4/3] rounded-xl overflow-hidden bg-gray-100 mb-3">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition duration-300" 
+                                 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkqG9oAAAEEAFlzXupfQAAAABJRU5ErkJggg==" alt="Villa">
+                        </div>
+                        <div class="flex justify-between items-center text-[15px]">
+                            <span class="font-bold">Beachfront Villa</span>
+                            <span class="flex items-center gap-1">
+                                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" /></svg>
+                                4.98
+                            </span>
+                        </div>
+                    </div>
+                    <div class="group cursor-pointer">
+                        <div class="aspect-[4/3] rounded-xl overflow-hidden bg-gray-100 mb-3">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition duration-300" 
+                                 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==" alt="Studio">
+                        </div>
+                        <div class="flex justify-between items-center text-[15px]">
+                            <span class="font-bold">Modern Studio</span>
+                            <span class="flex items-center gap-1">
+                                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" /></svg>
+                                4.82
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+    </div>
+    
+<%- include('../partials/footer') %>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<%- include('../partials/head') %>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Highlighting the selected button */
+        .selected-category {
+            border-color: black !important;
+            background-color: #f3f4f6 !important;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+    </style>
+    </head>
+
+    <body class="bg-gray-50 text-gray-900">
+
+        <%- include('../partials/nav') %>
+
+            <main class="max-w-4xl mx-auto px-6 py-12">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+
+                    <div class="flex flex-col justify-center">
+                        <span class="text-rose-500 font-bold uppercase tracking-widest text-xs mb-4">Step 1</span>
+                        <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6">
+                            <%= state ? "Edit your home " :"Add your home " %> <br>details
+                </h1>
+                <p class=" text-gray-500 text-lg">Your information will be shared with guests once they book your stay.
+                                </p>
+                    </div>
+
+                    <div class="bg-white p-8 border border-gray-200 rounded-2xl shadow-xl">
+                        <form id="addHomeForm" action="<%= state ? '/edit-home/' + homeDetails.id  : '/add-home' %>" method="POST"
+                            class="space-y-6">
+
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">
+                                    <%= state ? "Edit your home title" :"Give your house a title" %>
+                                </label>
+                                <input type="text" name="title" value="<%= state ? homeDetails.name : '' %>" required
+                                    placeholder="e.g. Modern Loft in Downtown"
+                                    class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">
+                                    <%= state ? "Edit your home description" :"Give your house a description" %>
+                                </label>
+                                <input type="text" name="description" value="<%= state ? homeDetails.description : '' %>" required
+                                    placeholder="e.g. My sweet home "
+                                    class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-3">Which best describes your
+                                    place?</label>
+
+                                <% const currentCategory=state ? homeDetails.category : 'House' %>
+                                    <input type="hidden" name="category" id="selectedCategory"
+                                        value="<%= currentCategory %>">
+
+                                    <div class="grid grid-cols-2 gap-3" id="categoryGrid">
+                                        <button type="button" data-value="House"
+                                            class="category-btn <%= currentCategory === 'House' ? 'selected-category' : '' %> flex flex-col items-start p-4 border-2 border-gray-200 rounded-xl hover:border-black transition">
+                                            <span class="text-2xl mb-1">🏡</span>
+                                            <span class="font-semibold text-sm">House</span>
+                                        </button>
+
+                                        <button type="button" data-value="Apartment"
+                                            class="category-btn <%= currentCategory === 'Apartment' ? 'selected-category' : '' %> flex flex-col items-start p-4 border-2 border-gray-200 rounded-xl hover:border-black transition">
+                                            <span class="text-2xl mb-1">🏢</span>
+                                            <span class="font-semibold text-sm">Apartment</span>
+                                        </button>
+
+                                        <button type="button" data-value="Cabin"
+                                            class="category-btn <%= currentCategory === 'Cabin' ? 'selected-category' : '' %> flex flex-col items-start p-4 border-2 border-gray-200 rounded-xl hover:border-black transition">
+                                            <span class="text-2xl mb-1">⛺</span>
+                                            <span class="font-semibold text-sm">Cabin</span>
+                                        </button>
+
+                                        <button type="button" data-value="Mansion"
+                                            class="category-btn <%= currentCategory === 'Mansion' ? 'selected-category' : '' %> flex flex-col items-start p-4 border-2 border-gray-200 rounded-xl hover:border-black transition">
+                                            <span class="text-2xl mb-1">🏰</span>
+                                            <span class="font-semibold text-sm">Mansion</span>
+                                        </button>
+                                    </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">Rating</label>
+                                <div class="relative">
+                                    <span class="absolute left-4 top-4 text-gray-400">📍</span>
+                                    <input type="text" name="rating" required
+                                        value="<%= state ? homeDetails.rating : '' %>" placeholder="Enter your rating"
+                                        class="w-full pl-10 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">Location</label>
+                                <div class="relative">
+                                    <span class="absolute left-4 top-4 text-gray-400">📍</span>
+                                    <input type="text" name="address" required
+                                        value="<%= state ? homeDetails.address : '' %>" placeholder="Enter your address"
+                                        class="w-full pl-10 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">Img Url</label>
+                                <div class="relative">
+                                    <span class="absolute left-4 top-4 text-gray-400">📍</span>
+                                    <input type="text" name="imgUrl" required
+                                        value="<%= state ? homeDetails.imgUrl : '' %>" placeholder="Enter your Img Url"
+                                        class="w-full pl-10 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">Set your price</label>
+                                <div class="flex items-center">
+                                    <span class="text-3xl font-bold mr-2 text-gray-400">$</span>
+                                    <input type="number" name="price" value="<%= state ? homeDetails.price : '50' %>"
+                                        required
+                                        class="text-4xl font-bold w-32 border-none focus:ring-0 outline-none text-gray-800">
+                                    <span class="text-gray-400 font-medium">/ night</span>
+                                </div>
+                            </div>
+
+                            <div class="pt-6 border-t border-gray-100 flex items-center justify-between">
+                                <button type="button" onclick="history.back()"
+                                    class="font-semibold underline">Back</button>
+                                <button type="submit"
+                                    class="bg-gradient-to-r from-rose-500 to-pink-600 text-white font-bold py-3 px-10 rounded-xl hover:opacity-90 transition shadow-lg shadow-rose-200 cursor-pointer">
+                                    <%= state ? "Update Listing" : "Create Listing" %>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </main>
+
+            <%- include('../partials/footer') %>
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                        const buttons = document.querySelectorAll('.category-btn');
+                        const hiddenInput = document.getElementById('selectedCategory');
+
+                        buttons.forEach(btn => {
+                            btn.addEventListener('click', () => {
+                                // 1. Remove selected class from all buttons
+                                buttons.forEach(b => b.classList.remove('selected-category'));
+
+                                // 2. Add selected class to the one clicked
+                                btn.classList.add('selected-category');
+
+                                // 3. Update the hidden input value so the form sends the right data
+                                const value = btn.getAttribute('data-value');
+                                hiddenInput.value = value;
+
+                                console.log("Category updated to:", value);
+                            });
+                        });
+                    });
+                </script>
+
+    </body>
+
+    </html>
