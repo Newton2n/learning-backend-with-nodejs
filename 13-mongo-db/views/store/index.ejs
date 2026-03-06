@@ -64,7 +64,7 @@
                             <div class="flex flex-col gap-0">
                                 <div class="flex justify-between items-start">
                                     <h3 class="font-bold text-[12px] line-clamp-1">
-                                        <%= item.name %>
+                                        <%= item.title %>
                                     </h3>
                                     <span class="text-[10px] font-medium text-gray-400">
                                         <%= item.category %>
@@ -80,14 +80,14 @@
                                     </p>
 
                                     <form action="/favorites" method="POST">
-                                        <input type="hidden" name="homeId" value="<%= item.id %>">
+                                        <input type="hidden" name="homeId" value="<%= item._id %>">
                                     <button type="submit"
                                         class=" bg-[#ff385c] text-white text-[10px] font-bold px-3 py-1 rounded-md
                                         hover:bg-[#e31c5f] transition-colors active:scale-95 cursor-pointer">
                                         Favorite 
                                         </button>
                                     </form>
-                                    <a href="home-details/<%= item.id %>">
+                                    <a href="home-details/<%= item._id %>">
                                         <button
                                             class="bg-blue-500 text-white text-[10px] font-bold px-3 py-1 rounded-md hover:bg-blue-700 transition-colors active:scale-95 cursor-pointer">
                                             Details

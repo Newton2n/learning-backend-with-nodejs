@@ -8,7 +8,7 @@ let _db;
 const mongoConnect = (callback) => {
   MongoClient.connect(MONGO_URL)
     .then((client) => {
-      db = client.db("airbnb");
+      _db = client.db("airbnb");
       callback();
     })
     .catch((err) => {
@@ -18,7 +18,7 @@ const mongoConnect = (callback) => {
 
 const getDb = () => {
   if (!_db) {
-    throw new Error("Mongo not connect");
+    throw new Error("Mongo not connected");
   }
   return _db;
 };
