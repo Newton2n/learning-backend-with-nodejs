@@ -1,0 +1,48 @@
+<%- include('../partials/head') %>
+
+    <body>
+        <%- include('../partials/nav') %>
+
+
+            <main class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+
+                <div
+                    class="bg-white rounded-xl shadow-xl w-full max-w-md border border-gray-200 flex flex-col min-h-[350px] overflow-hidden">
+
+
+
+                    <main class="p-8 flex-grow">
+                        <h2 class="text-2xl font-semibold mb-6 text-gray-900">Welcome to Airbnb</h2>
+
+                        <form action="/login" method="POST" class="space-y-4">
+                            <div
+                                class="border border-gray-400 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-black transition-all">
+                                <div class="border-b border-gray-400 p-3 bg-white">
+                                    <label
+                                        class="block text-[10px] text-gray-500 uppercase font-black tracking-wider">Email/Username</label>
+                                    <input type="text" name="userName" placeholder="Email Or Username" required
+                                        class="w-full text-base outline-none bg-transparent pt-1 placeholder:text-gray-400">
+                                </div>
+                                <div class="p-3 bg-white">
+                                    <label
+                                        class="block text-[10px] text-gray-500 uppercase font-black tracking-wider">Password</label>
+                                    <input type="password" name="password" placeholder="Password" required
+                                        class="w-full text-base outline-none bg-transparent pt-1 placeholder:text-gray-400">
+                                </div>
+                            </div>
+
+                            <button type="submit"
+                                class="w-full bg-[#E00B41] hover:bg-[#BD0937] text-white font-bold py-3.5 rounded-lg transition-all mt-4 active:scale-[0.98] shadow-md cursor-pointer">
+                                Sign in
+                            </button>
+                        </form>
+
+
+                    </main>
+
+
+
+                </div>
+
+            </main>
+    </body>
