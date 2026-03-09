@@ -16,24 +16,20 @@ exports.getHome = (req, res, next) => {
 };
 
 exports.getFavoritesList = (req, res, next) => {
-  Favorites.find().then((homeListId) => {
-    console.log("Favorite home list ids", ...homeListId);
-    const homeIdListArr = homeListId.map((ids) => ids.homeId.toString());
-    console.log("Home Id arr",homeIdListArr);
-    Home.find().then((allHome) => {
-      console.log(allHome);
-      const favHome = allHome.filter((home) => {
-        console.log(home, "HOme single list");
-        return homeIdListArr.includes(home._id.toString());
-      });
-      console.log(favHome);
+  Favorites.find()
+    .populate("homeId") // find all relation
+    .then((favHomeList) => {
+      console.log("Favorite home list ", ...favHomeList);
+      const homeListArr = favHomeList.map((favHome) => favHome.homeId);
+      console.log("Home", homeListArr);
+
       res.render("./store/favorite-list", {
         pageTitle: "Favorite list",
-        favoriteHomeList: favHome,
+        favoriteHomeList: homeListArr,
       });
     });
-  });
 };
+
 exports.getBookingsList = (req, res, next) => {
   res.render("./store/booking", {
     pageTitle: "Booking list",
@@ -65,7 +61,7 @@ exports.deleteFromFav = (req, res, next) => {
   console.log(homeId);
   Favorites.findOneAndDelete({ homeId: homeId })
     .then((result) => {
-      console.log("DEleted from fav list",result);
+      console.log("DEleted from fav list", result);
     })
     .catch((err) => {
       console.log("error on deleting to fav list", err);
