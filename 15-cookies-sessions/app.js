@@ -4,6 +4,8 @@ const path = require("path");
 //external modules
 const express = require("express");
 const { default: mongoose } = require("mongoose");
+const session = require("express-session");
+const mongodbSession = require("connect-mongodb-session")(session);
 
 //local modules
 const rootDir = require("./util/path-utils");
@@ -19,10 +21,28 @@ app.set("view engine", "ejs");
 app.set("views", "views");
 app.use(express.static(path.join(rootDir, "public")));
 
+const DB_PATH =
+  "mongodb+srv://newton:newton@airbnb.cidzwvf.mongodb.net/airbnb?appName=airbnb";
+
+const dbStore = new mongodbSession({
+  uri: DB_PATH,
+  collection: "session",
+});
+
+
+
+app.use(
+  session({
+    secret: "Newton96",
+    resave: false,
+    saveUninitialized: true,
+    store: dbStore,
+  }),
+);
+
 app.use(auth); //home page
 app.use((req, res, next) => {
-  req.isLoggedIn = req.get("cookie")?.split("=")[1] || false;
-  console.log("IN main auth middleware",req.isLoggedIn)
+  req.isLoggedIn = req.session.isLoggedIn;
   next();
 });
 
@@ -31,8 +51,6 @@ app.use(store); //user page
 app.use(notFound); //not found page
 
 const PORT = 3000;
-const DB_PATH =
-  "mongodb+srv://newton:newton@airbnb.cidzwvf.mongodb.net/airbnb?appName=airbnb";
 
 mongoose
   .connect(DB_PATH)

@@ -38,15 +38,25 @@
                     Host home list
                 </a>
 
-             <%  } %>
+                <% } %>
 
-                </a>
-                <a href="/login"
-                    class="text-[13px] font-semibold py-2.5 px-2 rounded-full hover:bg-red-100 transition text-red-600">
+                    </a>
+                    <% if(!isLoggedIn) { %>
+                        <a href="/login"
+                            class="text-[13px] font-semibold py-2.5 px-2 rounded-full hover:bg-red-100 transition text-red-600">
 
-                    Log in
-                </a>
-
+                            Log in
+                        </a>
+                        <% } %>
+                            <% if(isLoggedIn) { %>
+                                <form action="/logout" method="POST">
+                                    <input type="text" hidden name="userId" value="Newton">
+                                    <button type="submit"
+                                        class="text-[13px] font-semibold py-2.5 px-2 rounded-full hover:bg-red-100 transition text-red-800 cursor-pointer">
+                                        Log out
+                                    </button>
+                                </form>
+                                <% } %>
 
         </div>
     </div>

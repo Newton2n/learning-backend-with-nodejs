@@ -2,7 +2,7 @@ const Home = require("../models/home");
 const Favorites = require("../models/favorite");
 
 exports.getHome = (req, res, next) => {
-  console.log("is log in?",req.isLoggedIn)
+  console.log("is log in?",req.session)
   Home.find()
     .then((HomeDetails) => {
       // console.log("Add home details :", HomeDetails);
