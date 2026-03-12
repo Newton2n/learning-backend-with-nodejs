@@ -1,0 +1,151 @@
+<%- include('../partials/head') %>
+
+    <body>
+        <%- include('../partials/nav') %>
+
+            <main class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+                <div class="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+                    <div class="sm:mx-auto sm:w-full sm:max-auto sm:max-w-md text-center">
+                        <div class="mx-auto h-12 w-12 bg-rose-500 rounded-lg flex items-center justify-center">
+                            <span class="text-white text-2xl font-bold">A</span>
+                        </div>
+                        <h2 class="mt-6 text-3xl font-extrabold text-gray-900">Create your account</h2>
+                    </div>
+
+                    <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+                        <div class="bg-white py-8 px-4 shadow sm:rounded-xl sm:px-10 border border-gray-100">
+                            <form class="space-y-4" action="signup" method="POST">
+
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="first-name" class="block text-sm font-medium text-gray-700">First
+                                            Name</label>
+                                        <input id="first-name" name="firstName" type="text" placeholder="Jane"
+                                            value="<%= locals.oldInput ? oldInput.firstName : '' %>"
+                                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-rose-500 focus:border-rose-500 sm:text-sm">
+                                        <% if (locals.errorMessage) { %>
+                                            <% errorMessage.filter(e=> e.errorPath === 'firstName').forEach(err => { %>
+                                                <p class="mt-1 text-xs text-rose-600 font-medium">
+                                                    <%= err.errorMessage %>
+                                                </p>
+                                                <% }) %>
+                                                    <% } %>
+                                    </div>
+                                    <div>
+                                        <label for="last-name" class="block text-sm font-medium text-gray-700">Last
+                                            Name</label>
+                                        <input id="last-name" name="lasName" type="text" placeholder="Doe"
+                                            value="<%= locals.oldInput ? oldInput.lastName : '' %>"
+                                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-rose-500 focus:border-rose-500 sm:text-sm">
+                                        <% if (locals.errorMessage) { %>
+                                            <% errorMessage.filter(e=> e.errorPath === 'lastName').forEach(err => { %>
+                                                <p class="mt-1 text-xs text-rose-600 font-medium">
+                                                    <%= err.errorMessage %>
+                                                </p>
+                                                <% }) %>
+                                                    <% } %>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-700">Email
+                                        address</label>
+                                    <input id="email" name="email" type="email" placeholder="jane@example.com"
+                                        value="<%= locals.oldInput ? oldInput.email : '' %>"
+                                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-rose-500 focus:border-rose-500 sm:text-sm">
+                                </div>
+
+                                <div>
+                                    <label for="phone-number" class="block text-sm font-medium text-gray-700">Phone
+                                        Number</label>
+                                    <input id="phone-number" name="phoneNumber" type="tel"
+                                        placeholder="+1 (555) 000-0000"
+                                        value="<%= locals.oldInput ? oldInput.phoneNumber : '' %>"
+                                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-rose-500 focus:border-rose-500 sm:text-sm">
+                                    <% if (locals.errorMessage) { %>
+                                        <% errorMessage.filter(e=> e.errorPath === 'phoneNumber').forEach(err => { %>
+                                            <p class="mt-1 text-xs text-rose-600 font-medium">
+                                                <%= err.errorMessage %>
+                                            </p>
+                                            <% }) %>
+                                                <% } %>
+                                </div>
+
+                                <div>
+                                    <label for="password"
+                                        class="block text-sm font-medium text-gray-700">Password</label>
+                                    <input id="password" name="password" type="password"
+                                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-rose-500 focus:border-rose-500 sm:text-sm">
+                                    <% if (locals.errorMessage) { %>
+                                        <% errorMessage.filter(e=> e.errorPath === 'password').forEach(err => { %>
+                                            <p class="mt-1 text-xs text-rose-600 font-medium">
+                                                <%= err.errorMessage %>
+                                            </p>
+                                            <% }) %>
+                                                <% } %>
+                                </div>
+
+                                <div>
+                                    <label for="confirm-password"
+                                        class="block text-sm font-medium text-gray-700">Confirm Password</label>
+                                    <input id="confirmPassword" name="confirmPassword" type="password"
+                                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-rose-500 focus:border-rose-500 sm:text-sm">
+                                    <% if (locals.errorMessage) { %>
+                                        <% errorMessage.filter(e=> e.errorPath === 'confirmPassword').forEach(err => {
+                                            %>
+                                            <p class="mt-1 text-xs text-rose-600 font-medium">
+                                                <%= err.errorMessage %>
+                                            </p>
+                                            <% }) %>
+                                                <% } %>
+                                </div>
+
+                                <div class="pt-2">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Sign up as:</label>
+                                    <div class="flex items-center space-x-6">
+                                        <div class="flex items-center">
+                                            <input name="role" type="radio" value="user" <%=locals.oldInput &&
+                                                oldInput.role 
+                                            === 'user' ? 'checked' : '' %>
+                                                class="h-4 w-4 text-rose-600 border-gray-300 focus:ring-rose-500
+                                                cursor-pointer" id="User">
+                                                <label for="User"
+                                                    class="ml-2 block text-sm text-gray-700 cursor-pointer">User</label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input name="role" type="radio" value="admin" <%=locals.oldInput &&
+                                                oldInput.role==='admin' ? 'checked' : '' %>
+                                            class="h-4 w-4 text-rose-600 border-gray-300 focus:ring-rose-500
+                                            cursor-pointer" id="Admin">
+                                            <label for="Admin"
+                                                class="ml-2 block text-sm text-gray-700 cursor-pointer">Admin</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start pt-2">
+                                    <div class="flex items-center h-5">
+                                        <input id="policy" name="policy" value="checked" type="checkbox"
+                                            class="h-4 w-4 text-rose-600 border-gray-300 rounded focus:ring-rose-500 cursor-pointer"
+                                            required>
+                                    </div>
+                                    <div class="ml-3 text-sm">
+                                        <label for="policy" class="font-medium text-gray-700">I confirm our
+                                            policy</label>
+                                        <p class="text-gray-500 text-xs">By clicking this, you agree to our Terms and
+                                            Data Policy.</p>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <button type="submit"
+                                        class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-rose-500 hover:bg-rose-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500 transition duration-150">
+                                        Sign Up
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </main>
+    </body>

@@ -25,7 +25,6 @@ const DB_PATH =
   "mongodb+srv://newton:newton@airbnb.cidzwvf.mongodb.net/airbnb?appName=airbnb";
 
 
-
 const dbStore = new mongodbSession({
   uri: DB_PATH,
   collection: "session",

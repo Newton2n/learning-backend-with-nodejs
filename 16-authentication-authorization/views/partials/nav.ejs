@@ -1,0 +1,158 @@
+<style>
+    .nav-menu.active {
+        display: block;
+    }
+
+    .nav-menu {
+        display: none;
+    }
+</style>
+
+<header class="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+    <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center h-16 gap-4">
+            <!-- Logo -->
+            <a href="/" class="flex items-center gap-2 transition-transform hover:scale-105 flex-shrink-0">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    class="text-[#ff385c]">
+                    <path fill="currentColor"
+                        d="M16 1c2.008 0 3.463.963 4.751 3.269l.533 1.025c1.954 3.83 6.114 12.54 7.1 14.836l.145.353c.667 1.591.91 2.472.96 3.396l.01.415.001.228c0 4.062-2.877 6.478-6.357 6.478-2.224 0-4.556-1.258-6.709-3.386l-.257-.26-.172-.179h-.011l-.176.185c-2.044 2.1-4.393 3.405-6.701 3.405-3.48 0-6.358-2.416-6.358-6.479 0-1.142.233-2.156.76-3.417l.128-.293C4.31 16.806 8.161 8.735 10.186 4.927l.535-1.033C12.008 1.963 13.463 1 15.471 1zM16 11c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3z" />
+                </svg>
+                <span class="hidden sm:block font-bold text-xl text-gray-900 tracking-tight">airbnb</span>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center gap-1 lg:gap-2">
+                <a href="/"
+                    class="text-sm font-medium text-gray-700 px-3 py-2 rounded-full transition hover:bg-gray-100">
+                    Home
+                </a>
+
+                <% if(isLoggedIn) { %>
+                    <a href="/add-home"
+                        class="text-sm font-medium text-gray-700 px-3 py-2 rounded-full transition hover:bg-gray-100">
+                        Add home
+                    </a>
+                    <a href="/home-list"
+                        class="text-sm font-medium text-gray-700 px-3 py-2 rounded-full transition hover:bg-gray-100">
+                        Homes
+                    </a>
+                    <a href="/favorites"
+                        class="text-sm font-medium text-gray-700 px-3 py-2 rounded-full transition hover:bg-gray-100">
+                        Favorites
+                    </a>
+                    <a href="/bookings"
+                        class="text-sm font-medium text-gray-700 px-3 py-2 rounded-full transition hover:bg-gray-100">
+                        Bookings
+                    </a>
+                    <a href="/host-home-list"
+                        class="text-sm font-medium text-gray-700 px-3 py-2 rounded-full transition hover:bg-gray-100">
+                        Host
+                    </a>
+                    <% } %>
+            </nav>
+
+            <!-- Auth Actions - Desktop -->
+            <div class="hidden md:flex items-center gap-3 ml-auto">
+                <% if(!isLoggedIn) { %>
+                    <a href="/login"
+                        class="text-sm font-semibold text-gray-700 px-4 py-2 rounded-full transition hover:bg-gray-100">
+                        Log in
+                    </a>
+                    <a href="/signup"
+                        class="text-sm font-semibold text-white bg-[#ff385c] px-6 py-2 rounded-full transition hover:bg-[#ff1a3b] shadow-md hover:shadow-lg">
+                        Sign up
+                    </a>
+                    <% } else { %>
+                        <form action="/logout" method="POST" class="inline">
+                            <input type="text" hidden name="userId" value="Newton">
+                            <button type="submit"
+                                class="text-sm font-semibold text-white bg-[#ff385c] px-6 py-2 rounded-full transition hover:bg-[#ff1a3b] shadow-md hover:shadow-lg cursor-pointer">
+                                Log out
+                            </button>
+                        </form>
+                        <% } %>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobileMenuBtn"
+                class="md:hidden ml-auto p-2 rounded-lg hover:bg-gray-100 transition flex-shrink-0"
+                aria-label="Toggle menu">
+                <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <nav id="navMenu" class="nav-menu md:hidden border-t border-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="/"
+                    class="block text-sm font-medium text-gray-700 px-3 py-2 rounded-lg transition hover:bg-gray-100">
+                    Home
+                </a>
+
+                <% if(isLoggedIn) { %>
+                    <a href="/add-home"
+                        class="block text-sm font-medium text-gray-700 px-3 py-2 rounded-lg transition hover:bg-gray-100">
+                        Add your home
+                    </a>
+                    <a href="/home-list"
+                        class="block text-sm font-medium text-gray-700 px-3 py-2 rounded-lg transition hover:bg-gray-100">
+                        Home list
+                    </a>
+                    <a href="/favorites"
+                        class="block text-sm font-medium text-gray-700 px-3 py-2 rounded-lg transition hover:bg-gray-100">
+                        Favorites
+                    </a>
+                    <a href="/bookings"
+                        class="block text-sm font-medium text-gray-700 px-3 py-2 rounded-lg transition hover:bg-gray-100">
+                        Bookings
+                    </a>
+                    <a href="/host-home-list"
+                        class="block text-sm font-medium text-gray-700 px-3 py-2 rounded-lg transition hover:bg-gray-100">
+                        Host home list
+                    </a>
+                    <% } %>
+
+                        <div class="border-t border-gray-100 pt-3 mt-3">
+                            <% if(!isLoggedIn) { %>
+                                <a href="/login"
+                                    class="block text-sm font-medium text-gray-700 px-3 py-2 rounded-lg transition hover:bg-gray-100">
+                                    Log in
+                                </a>
+                                <a href="/signup"
+                                    class="block text-sm font-medium text-white bg-[#ff385c] px-3 py-2 rounded-lg transition hover:bg-[#ff1a3b] mt-2">
+                                    Sign up
+                                </a>
+                                <% } else { %>
+                                    <form action="/logout" method="POST">
+                                        <input type="text" hidden name="userId" value="Newton">
+                                        <button type="submit"
+                                            class="w-full text-left text-sm font-medium text-white bg-[#ff385c] px-3 py-2 rounded-lg transition hover:bg-[#ff1a3b] cursor-pointer">
+                                            Log out
+                                        </button>
+                                    </form>
+                                    <% } %>
+                        </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<script>
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navMenu = document.getElementById('navMenu');
+
+    mobileMenuBtn.addEventListener('click', function () {
+        navMenu.classList.toggle('active');
+    });
+
+    // Close menu when a link is clicked
+    const navLinks = navMenu.querySelectorAll('a, button');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function () {
+            navMenu.classList.remove('active');
+        });
+    });
+</script>
