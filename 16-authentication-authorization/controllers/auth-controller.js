@@ -6,12 +6,46 @@ exports.getLogin = (req, res, next) => {
   res.render("auth/login", {
     pageTitle: "Log in page",
     isLoggedIn: false,
+    errorMessage: null,
+    oldInput: {
+      email: "",
+    },
   });
 };
-exports.postLogin = (req, res, next) => {
-  console.log(req);
+exports.postLogin = async (req, res, next) => {
+  console.log("email pass", req.body);
+  const { email, password } = req.body;
+  const user = await User.findOne({ email: email });
+  if (!user) {
+    return res.status(422).render("auth/login", {
+      pageTitle: "Log in page",
+      isLoggedIn: false,
+      errorMessage: "Invalid email or password",
+      oldInput: {
+        email,
+      },
+    });
+  }
+
+  const doMatch = await bcrypt.compare(password, user.password);
+  console.log("do match", doMatch);
+  if (!doMatch) {
+    return res.status(422).render("auth/login", {
+      pageTitle: "Log in page",
+      isLoggedIn: false,
+      errorMessage: "Invalid  password",
+      oldInput: {
+        email,
+      },
+    });
+  }
   req.session.isLoggedIn = true;
-  res.redirect("/");
+  req.session.user = user;
+  return req.session.save((err) => {
+    console.log(err);
+    res.redirect("/");
+  });
+
 };
 exports.getSignup = (req, res, next) => {
   res.render("auth/sign-up", {
@@ -113,7 +147,8 @@ exports.postSignup = [
           phoneNumber,
           userType: role,
         });
-        return newUser.save()
+        return newUser
+          .save()
           .then((result) => {
             console.log("User is created successfully", result);
             res.redirect("/login");
@@ -147,23 +182,23 @@ exports.postSignup = [
       //   .save()
       //   .then((result) => {
       //     console.log("User is created successfully", result);
-        //   res.redirect("/login");
-        // })
-        // .catch((err) => {
-        //   console.log("Error when creating user", err);
-        //   res.status(422).render("auth/sign-up", {
-        //     pageTitle: "Sign up  page",
-        //     isLoggedIn: false,
-        //     errorMessage: allErrors,
-        //     oldInput: {
-        //       firstName,
-        //       lastName,
-        //       email,
-        //       phoneNumber,
-        //       role,
-        //     },
-        //   });
-        // });
+      //   res.redirect("/login");
+      // })
+      // .catch((err) => {
+      //   console.log("Error when creating user", err);
+      //   res.status(422).render("auth/sign-up", {
+      //     pageTitle: "Sign up  page",
+      //     isLoggedIn: false,
+      //     errorMessage: allErrors,
+      //     oldInput: {
+      //       firstName,
+      //       lastName,
+      //       email,
+      //       phoneNumber,
+      //       role,
+      //     },
+      //   });
+      // });
     }
   },
 ];
