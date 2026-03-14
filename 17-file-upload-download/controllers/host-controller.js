@@ -1,28 +1,29 @@
 const Home = require("../models/home");
 
 exports.postHome = (req, res, next) => {
-  //   addHomeDetails.push(req.body);
-  const { title, category, address, price, description, img, rating } =
-    req.body;
-  console.log(req.body);
-  const home = new Home({
-    title,
-    category,
-    address,
-    price,
-    description,
-    img,
-    rating,
-  });
-  home.save().then(() => {
-    console.log("home save successfully");
-  });
-  res.render("./host/add-home-success", {
-    pageTitle: "airbnb | Home successful",
-    edit: false,
-    isLoggedIn :req.session.isLoggedIn,
-    userDetails:{}
-  });
+    // addHomeDetails.push(req.body);
+  // const { title, category, address, price, description, img, rating } =
+  //   req.body;
+  console.log("All req",req.body);
+  console.log("file",req.file);
+  // const home = new Home({
+  //   title,
+  //   category,
+  //   address,
+  //   price,
+  //   description,
+  //   img,
+  //   rating,
+  // });
+  // home.save().then(() => {
+  //   console.log("home save successfully");
+  // });
+  // res.render("./host/add-home-success", {
+  //   pageTitle: "airbnb | Home successful",
+  //   edit: false,
+  //   isLoggedIn :req.session.isLoggedIn,
+  //   userDetails:{}
+  // });
 };
 
 exports.getHostHome = (req, res, next) => {

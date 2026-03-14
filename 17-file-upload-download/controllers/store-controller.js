@@ -1,20 +1,25 @@
 const Home = require("../models/home");
 const User = require("../models/user");
 exports.getHome = (req, res, next) => {
+  console.log("📍 getHome called at", new Date().toISOString());
   console.log("is log in?", req.session);
   console.log("User details in home routes index", req.session.user);
+
+  const startTime = Date.now();
   Home.find()
     .then((HomeDetails) => {
-      // console.log("Add home details :", HomeDetails);
+      console.log(
+        `✅ Home.find() completed in ${Date.now() - startTime}ms, found ${HomeDetails.length} homes`,
+      );
       res.render("./store/index", {
         isLoggedIn: req.isLoggedIn,
         addHomeDetails: HomeDetails,
         pageTitle: "airbnb global home page",
-        userDetails: req.session.user,
+        userDetails: req.session.user || {},
       });
     })
     .catch((error) => {
-      console.log(error, "Error on reading file");
+      console.log("❌ Error on reading file:", error);
     });
 };
 
@@ -57,12 +62,10 @@ exports.deleteFromFav = async (req, res, next) => {
 
   const userDetails = await User.findById(userId);
   if (userDetails.favoriteHomes.includes(homeId)) {
-    userDetails.favoriteHomes.filter(
-      (fav) => fav !== homeId,
-    );
-   await userDetails.save()
+    userDetails.favoriteHomes.filter((fav) => fav !== homeId);
+    await userDetails.save();
   }
-  res.redirect("/")
+  res.redirect("/");
 };
 // };
 

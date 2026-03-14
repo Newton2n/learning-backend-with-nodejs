@@ -1,5 +1,6 @@
 exports.notFound = (req, res, next) => {
   res.status(404).render("./notFound", { pageTitle: "Not found",
     isLoggedIn : req.isLoggedIn,
+    userDetails:{}
    });
 };

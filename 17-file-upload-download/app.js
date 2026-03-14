@@ -14,16 +14,17 @@ const hostRouter = require("./routes/host-router");
 const store = require("./routes/store-router");
 const auth = require("./routes/auth-router");
 const app = express();
+const multer = require("multer");
 
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded());
 
 app.set("view engine", "ejs");
 app.set("views", "views");
 app.use(express.static(path.join(rootDir, "public")));
+app.use(multer({ dest: "uploads/" }).single("img"));
 
 const DB_PATH =
   "mongodb+srv://newton:newton@airbnb.cidzwvf.mongodb.net/airbnb?appName=airbnb";
-
 
 const dbStore = new mongodbSession({
   uri: DB_PATH,
@@ -49,7 +50,7 @@ app.use(hostRouter); //home page
 app.use(store); //user page
 app.use(notFound); //not found page
 
-const PORT = 3000;
+const PORT = 3009;
 
 mongoose
   .connect(DB_PATH)
