@@ -29,7 +29,9 @@ exports.getHostHome = (req, res, next) => {
       res.render("./host/host-home-list", {
         addHomeDetails: homeDetails,
         pageTitle: "Host home page",
-        isLoggedIn : req.isLoggedIn,
+        isLoggedIn: req.isLoggedIn,
+
+        userDetails: req.session.user,
       });
     })
     .catch((err) => {
@@ -39,8 +41,10 @@ exports.getHostHome = (req, res, next) => {
 exports.getAddHome = (req, res, next) => {
   res.render("./host/edit-home", {
     pageTitle: "airbnb | Add-home",
-    isLoggedIn : req.isLoggedIn,
+    isLoggedIn: req.isLoggedIn,
     state: false,
+
+    userDetails: req.session.user,
   });
 };
 exports.getEditHome = (req, res, next) => {
@@ -57,8 +61,10 @@ exports.getEditHome = (req, res, next) => {
       res.render("./host/edit-home", {
         state: state,
         homeDetails: homeDetails,
-        isLoggedIn : req.isLoggedIn,
+        isLoggedIn: req.isLoggedIn,
         pageTitle: "Edit home page",
+
+        userDetails: req.session.user,
       });
     }
   });

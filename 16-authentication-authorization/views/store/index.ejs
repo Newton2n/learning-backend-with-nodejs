@@ -79,7 +79,14 @@
                                         <%= item.price %> $ <span class="font-normal text-gray-400">day</span>
                                     </p>
 
-                                  
+                                    <form action="/favorites" method="POST">
+                                        <input type="hidden" name="homeId" value="<%= item._id %>">
+                                    <button type="submit"
+                                        class=" bg-[#ff385c] text-white text-[10px] font-bold px-3 py-1 rounded-md
+                                        hover:bg-[#e31c5f] transition-colors active:scale-95 cursor-pointer">
+                                        Favorite 
+                                        </button>
+                                    </form>
                                     <a href="home-details/<%= item._id %>">
                                         <button
                                             class="bg-blue-500 text-white text-[10px] font-bold px-3 py-1 rounded-md hover:bg-blue-700 transition-colors active:scale-95 cursor-pointer">

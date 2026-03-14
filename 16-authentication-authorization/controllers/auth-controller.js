@@ -10,6 +10,8 @@ exports.getLogin = (req, res, next) => {
     oldInput: {
       email: "",
     },
+
+    userDetails: {},
   });
 };
 exports.postLogin = async (req, res, next) => {
@@ -24,6 +26,8 @@ exports.postLogin = async (req, res, next) => {
       oldInput: {
         email,
       },
+
+      userDetails: {},
     });
   }
 
@@ -37,6 +41,8 @@ exports.postLogin = async (req, res, next) => {
       oldInput: {
         email,
       },
+
+      userDetails: {},
     });
   }
   req.session.isLoggedIn = true;
@@ -45,7 +51,6 @@ exports.postLogin = async (req, res, next) => {
     console.log(err);
     res.redirect("/");
   });
-
 };
 exports.getSignup = (req, res, next) => {
   res.render("auth/sign-up", {
@@ -59,6 +64,8 @@ exports.getSignup = (req, res, next) => {
       role: "",
     },
     errorMessage: [],
+
+    userDetails: {},
   });
 };
 exports.postSignup = [
@@ -136,6 +143,8 @@ exports.postSignup = [
           phoneNumber,
           role,
         },
+
+        userDetails: {},
       });
     } else {
       bcrypt.hash(password, 12).then((hashedPassword) => {
@@ -166,39 +175,11 @@ exports.postSignup = [
                 phoneNumber,
                 role,
               },
+
+              userDetails: {},
             });
           });
       });
-
-      // const newUser = new User({
-      //   firstName,
-      //   lastName,
-      //   email,
-      //   password,
-      //   phoneNumber,
-      //   userType: role,
-      // });
-      // newUser
-      //   .save()
-      //   .then((result) => {
-      //     console.log("User is created successfully", result);
-      //   res.redirect("/login");
-      // })
-      // .catch((err) => {
-      //   console.log("Error when creating user", err);
-      //   res.status(422).render("auth/sign-up", {
-      //     pageTitle: "Sign up  page",
-      //     isLoggedIn: false,
-      //     errorMessage: allErrors,
-      //     oldInput: {
-      //       firstName,
-      //       lastName,
-      //       email,
-      //       phoneNumber,
-      //       role,
-      //     },
-      //   });
-      // });
     }
   },
 ];

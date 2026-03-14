@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-const Favorite = require("./favorite");
 const homeSchema = mongoose.Schema({
   title: {
     type: String,
@@ -23,10 +22,10 @@ const homeSchema = mongoose.Schema({
   rating: Number,
 });
 
-homeSchema.pre("findOneAndDelete", async function () {
-  console.log("Came to pre hook while deleting a home");
-  const homeId = this.getQuery()._id;
-  await Favorite.findOneAndDelete({ homeId: homeId });
-});
+// homeSchema.pre("findOneAndDelete", async function () {
+//   console.log("Came to pre hook while deleting a home");
+//   const homeId = this.getQuery()._id;
+//   await Favorite.findOneAndDelete({ homeId: homeId });
+// });
 
 module.exports = mongoose.model("Home", homeSchema);

@@ -27,6 +27,10 @@ const userSchema = mongoose.Schema({
     type: Number,
     required: false,
   },
+  favoriteHomes :[{
+    type :mongoose.Schema.Types.ObjectId,
+    ref : "Home"
+  }]
 });
 
 

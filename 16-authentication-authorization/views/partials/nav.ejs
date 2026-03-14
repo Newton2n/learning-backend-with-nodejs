@@ -29,27 +29,32 @@
                 </a>
 
                 <% if(isLoggedIn) { %>
-                    <a href="/add-home"
-                        class="text-sm font-medium text-gray-700 px-3 py-2 rounded-full transition hover:bg-gray-100">
-                        Add home
-                    </a>
-                    <a href="/home-list"
-                        class="text-sm font-medium text-gray-700 px-3 py-2 rounded-full transition hover:bg-gray-100">
-                        Homes
-                    </a>
-                    <a href="/favorites"
-                        class="text-sm font-medium text-gray-700 px-3 py-2 rounded-full transition hover:bg-gray-100">
-                        Favorites
-                    </a>
-                    <a href="/bookings"
-                        class="text-sm font-medium text-gray-700 px-3 py-2 rounded-full transition hover:bg-gray-100">
-                        Bookings
-                    </a>
-                    <a href="/host-home-list"
-                        class="text-sm font-medium text-gray-700 px-3 py-2 rounded-full transition hover:bg-gray-100">
-                        Host
-                    </a>
-                    <% } %>
+                    <% if(userDetails.userType==="user" ) { %>
+                        <a href="/home-list"
+                            class="text-sm font-medium text-gray-700 px-3 py-2 rounded-full transition hover:bg-gray-100">
+                            Home list
+                        </a>
+                        <a href="/favorites"
+                            class="text-sm font-medium text-gray-700 px-3 py-2 rounded-full transition hover:bg-gray-100">
+                            Favorites
+                        </a>
+                        <a href="/bookings"
+                            class="text-sm font-medium text-gray-700 px-3 py-2 rounded-full transition hover:bg-gray-100">
+                            Bookings
+                        </a>
+                        <% } %>
+                            <% if(userDetails.userType==="admin" ) { %>
+                                <a href="/add-home"
+                                    class="text-sm font-medium text-gray-700 px-3 py-2 rounded-full transition hover:bg-gray-100">
+                                    Add home
+                                </a>
+                                <a href="/host-home-list"
+                                    class="text-sm font-medium text-gray-700 px-3 py-2 rounded-full transition hover:bg-gray-100">
+                                    Host home list
+                                </a>
+                                <% } %>
+
+                                    <% } %>
             </nav>
 
             <!-- Auth Actions - Desktop -->
