@@ -1,29 +1,29 @@
 const Home = require("../models/home");
-
+const fs = require("fs");
 exports.postHome = (req, res, next) => {
-    // addHomeDetails.push(req.body);
-  // const { title, category, address, price, description, img, rating } =
-  //   req.body;
-  console.log("All req",req.body);
-  console.log("file",req.file);
-  // const home = new Home({
-  //   title,
-  //   category,
-  //   address,
-  //   price,
-  //   description,
-  //   img,
-  //   rating,
-  // });
-  // home.save().then(() => {
-  //   console.log("home save successfully");
-  // });
-  // res.render("./host/add-home-success", {
-  //   pageTitle: "airbnb | Home successful",
-  //   edit: false,
-  //   isLoggedIn :req.session.isLoggedIn,
-  //   userDetails:{}
-  // });
+  // addHomeDetails.push(req.body);
+  const { title, category, address, price, description, rating } = req.body;
+  console.log("All req", req.body);
+  console.log("file", req.file);
+  const img = req.file.path;
+  const home = new Home({
+    title,
+    category,
+    address,
+    price,
+    description,
+    img,
+    rating,
+  });
+  home.save().then(() => {
+    console.log("home save successfully");
+  });
+  res.render("./host/add-home-success", {
+    pageTitle: "airbnb | Home successful",
+    edit: false,
+    isLoggedIn: req.session.isLoggedIn,
+    userDetails: req.session.user,
+  });
 };
 
 exports.getHostHome = (req, res, next) => {
@@ -76,8 +76,7 @@ exports.getEditHome = (req, res, next) => {
 exports.postEditHome = (req, res, next) => {
   const _id = req.params.homeId;
   console.log("post edit home", _id);
-  const { title, category, address, price, description, imgUrl, rating } =
-    req.body;
+  const { title, category, address, price, description, rating } = req.body;
   Home.findById(_id)
     .then((home) => {
       home.title = title;
@@ -85,7 +84,13 @@ exports.postEditHome = (req, res, next) => {
       home.address = address;
       home.price = price;
       home.description = description;
-      home.imgUrl = imgUrl;
+      if (req.file) {
+        fs.unlink(home.img, (err) => {
+          console.log("Error when deleting image", err);
+        });
+
+        home.img = req.file.path;
+      }
       home.rating = rating;
       home
         .save()

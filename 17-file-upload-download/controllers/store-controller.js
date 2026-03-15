@@ -74,6 +74,7 @@ exports.getHomeDetails = (req, res, next) => {
   console.log("Home id in get home details", homeId);
   Home.findById(homeId).then((home) => {
     console.log("Home by id in get home details", home);
+    console.log("Home by id in get home details", home.img);
     if (!home) {
       console.log("Home not found");
       res.redirect("/homes");

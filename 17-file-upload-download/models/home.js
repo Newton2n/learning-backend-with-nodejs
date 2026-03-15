@@ -18,7 +18,7 @@ const homeSchema = mongoose.Schema({
     required: true,
   },
   description: String,
-  imgUrl: String,
+  img: String,
   rating: Number,
 });
 
