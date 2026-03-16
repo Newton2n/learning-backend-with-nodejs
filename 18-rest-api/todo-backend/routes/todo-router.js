@@ -2,11 +2,13 @@
 const express = require("express");
 
 //local
-const { createTodo } = require("../controllers/create-todo");
+const { createTodo,getAllTodo,deleteTodo } = require("../controllers/create-todo");
 
 const todo = express.Router();
 
-todo.get("/", createTodo);
+todo.post("/", createTodo);
+todo.get("/", getAllTodo);
+todo.delete("/:id", deleteTodo);
 
 //  Export the router to be used in other files
 module.exports = todo;
