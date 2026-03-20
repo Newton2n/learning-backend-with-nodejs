@@ -1,7 +1,7 @@
-import TodoItem from "./TodoItem";
+import TodoItem from "./iodo-item";
 import styles from "./TodoItems.module.css";
 
-const TodoItems = ({ todoItems}) => {
+const TodoItems = ({ todoItems,handleDeleteItem}) => {
   return (
     <div className={styles.itemsContainer}>
       {todoItems.map((item) => (
@@ -10,6 +10,7 @@ const TodoItems = ({ todoItems}) => {
           todoDate={item.created}
           todoName={item.task}
           id={item.id}
+          handleDeleteItem ={handleDeleteItem}
           
         ></TodoItem>
       ))}

@@ -1,32 +1,34 @@
-import AppName from "./components/AppName";
-import AddTodo from "./components/AddTodo";
-import TodoItems from "./components/TodoItems";
-import WelcomeMessage from "./components/WelcomeMessage";
+import AppName from "./components/app-name";
+import AddTodo from "./components/add-todo";
+import TodoItems from "./components/todo-items";
+import WelcomeMessage from "./components/welcome-message";
 import "./App.css";
 import { useState } from "react";
-import { createTodo, getAllTodo,deleteItem } from "./service/todoItem";
+import { createTodo, getAllTodo, deleteItem } from "./service/todo-item";
+import { useEffect } from "react";
 
 function App() {
   const [todoItems, setTodoItems] = useState([]);
+
   const fetchAll = async () => {
     const res = await getAllTodo();
     console.log(res);
     setTodoItems(res);
   };
-  // fetchAll()
+  useEffect(() => {
+    fetchAll();
+  }, []);
+
   const handleNewItem = async (itemName, itemDueDate) => {
     console.log(`New Item Added: ${itemName} Date:${itemDueDate}`);
-    createTodo(itemName, itemDueDate);
-    // const newTodoItems = [
-    //   ...todoItems,
-    //   { name: itemName, dueDate: itemDueDate },
-    // ];
-    fetchAll();
-    // setTodoItems(newTodoItems);
-  };
+    await createTodo(itemName, itemDueDate);
 
-  const handleDeleteItem =async (todoItemId) => {
-   await deleteItem(todoItemId)
+    fetchAll();
+  };
+  const handleDeleteItem = async (todoItemId) => {
+    await deleteItem(todoItemId);
+    fetchAll();
+    console.log(todoItems);
   };
 
   return (
@@ -34,9 +36,13 @@ function App() {
       <AppName />
       <AddTodo onNewItem={handleNewItem} />
       {todoItems.length === 0 && <WelcomeMessage></WelcomeMessage>}
-      <TodoItems
-        todoItems={todoItems}
-      ></TodoItems>
+
+      {todoItems.length > 0 && (
+        <TodoItems
+          todoItems={todoItems}
+          handleDeleteItem={handleDeleteItem}
+        ></TodoItems>
+      )}
     </center>
   );
 }

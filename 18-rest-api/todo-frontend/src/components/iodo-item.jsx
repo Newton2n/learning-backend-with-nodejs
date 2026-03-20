@@ -1,5 +1,5 @@
-import { deleteItem } from "../service/todoItem";
-function TodoItem({ todoName, todoDate, id}) {
+import { deleteItem } from "../service/todo-item";
+function TodoItem({ todoName, todoDate, id, handleDeleteItem }) {
   return (
     <div className="container">
       <div className="row kg-row">
@@ -9,7 +9,7 @@ function TodoItem({ todoName, todoDate, id}) {
           <button
             type="button"
             className="btn btn-danger kg-button"
-            onClick={() => deleteItem(id)}
+            onClick={() => handleDeleteItem(id)}
           >
             Delete
           </button>

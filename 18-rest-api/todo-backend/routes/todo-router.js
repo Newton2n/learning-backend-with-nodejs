@@ -2,7 +2,7 @@
 const express = require("express");
 
 //local
-const { createTodo,getAllTodo,deleteTodo } = require("../controllers/create-todo");
+const { createTodo, getAllTodo, deleteTodo } = require("../controllers/todo");
 
 const todo = express.Router();
 
